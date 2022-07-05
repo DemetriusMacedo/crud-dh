@@ -6,36 +6,39 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
 	// Root - Show all products
-	index: (req, res) => {
+	index: (request, response) => {
 		// Do the magic
 	},
+	detail: (request, response) => {
+		const { id } = request.params;
 
-	// Detail - Detail from one product
-	detail: (req, res) => {
-		// Do the magic
+		const productFound = products
+			.find((product) => product.id === +id);
+
+		response.render('detail', { product: productFound })
 	},
 
 	// Create - Form to create
-	create: (req, res) => {
+	create: (request, response) => {
 		// Do the magic
 	},
 
 	// Create -  Method to store
-	store: (req, res) => {
+	store: (request, response) => {
 		// Do the magic
 	},
 
 	// Update - Form to edit
-	edit: (req, res) => {
+	edit: (request, response) => {
 		// Do the magic
 	},
 	// Update - Method to update
-	update: (req, res) => {
+	update: (request, response) => {
 		// Do the magic
 	},
 
 	// Delete - Delete one product from DB
-	destroy: (req, res) => {
+	destroy: (request, response) => {
 		// Do the magic
 	}
 };

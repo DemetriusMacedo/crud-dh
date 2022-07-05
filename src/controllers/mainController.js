@@ -5,10 +5,10 @@ const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
-	index: (req, res) => {
-		// Do the magic
+	index: (request, response) => {
+		response.render('index');
 	},
-	search: (req, res) => {
+	search: (request, response) => {
 		// Do the magic
 	},
 };
