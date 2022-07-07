@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <!-- Include Head -->
 <%- include('partials/head', {title: 'Formulário de criação'}) %>
+
 <body>
 	<!-- Header -->
 	<%- include('partials/headerNavbar') %>
@@ -14,7 +15,7 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<form action="¿?" method="___">
+			<form action="/products" method="post">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nome do produto:</label>
@@ -41,6 +42,10 @@
 						<textarea name="description" id="description" class="form-input"></textarea>
 					</div>
 					<div class="col-12">
+						<label for="image" class="form-label">Imagen:</label>
+						<input type="file" name="image" id="image" class="form-input">
+					</div>
+					<div class="col-12">
 						<button type="submit" class="buy-now-button">Salvar produto</button>
 					</div>
 				</div>
@@ -53,5 +58,6 @@
 	<!-- footer -->
 	<%- include('partials/footer') %>
 	<!-- /footer -->
-</body>	
+</body>
+
 </html>

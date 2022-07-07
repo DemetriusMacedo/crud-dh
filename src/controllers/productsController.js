@@ -3,7 +3,6 @@ const path = require('path');
 const { formatCurrencyBr } = require('../helpers/formatCurrencyBr');
 
 const productsFilePath = path.join(__dirname, '..', 'data', 'productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
 	// Root - Show all products
@@ -13,9 +12,10 @@ const controller = {
 	detail: (request, response) => {
 		const { id } = request.params;
 
+		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
 		const productFound = products
 			.find((product) => product.id === +id);
-
 
 		const finalDiscount = (productFound.price * productFound.discount) / 100;
 		const finalPrice = productFound.price - finalDiscount;
@@ -28,17 +28,29 @@ const controller = {
 			finalPriceFormated
 		};
 
-		response.render('detail', { product: productFinal })
+		response.render('detail', { product: productFinal });
 	},
-
-	// Create - Form to create
 	create: (request, response) => {
-		// Do the magic
+		response.render('product-create-form');
 	},
 
 	// Create -  Method to store
 	store: (request, response) => {
-		// Do the magic
+		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
+		const newProduct = {
+			id: products.at(-1).id + 1,
+			...request.body
+		}
+
+		products.push(newProduct);
+
+		fs.writeFileSync(
+			productsFilePath,
+			JSON.stringify(products)
+		);
+
+		response.redirect('/');
 	},
 
 	// Update - Form to edit
@@ -53,12 +65,11 @@ const controller = {
 	// Delete - Delete one product from DB
 	destroy: (request, response) => {
 		const { id } = request.params;
-		console.log(productsFilePath);
+
+		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
 		const newProducts = products
 			.filter((product) => product.id !== +id);
-
-		console.log(JSON.stringify(newProducts));
-		console.log(newProducts);
 
 		fs.writeFileSync(
 			productsFilePath,
