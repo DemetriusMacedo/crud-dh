@@ -24,11 +24,11 @@ const mainController = {
 			(product) => product.category === 'visited'
 		);
 
-		const ProductsInSale = productWithFinalPrice.filter(
+		const productsInSale = productWithFinalPrice.filter(
 			(product) => product.category === 'in-sale'
 		);
 
-		response.render('index', { productsVisited, ProductsInSale });
+		response.render('index', { productsVisited, productsInSale });
 	},
 	search: (request, response) => {
 		// Do the magic
