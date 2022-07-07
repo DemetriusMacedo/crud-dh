@@ -4,11 +4,8 @@
 <%- include('partials/head', {title: '¿?'}) %>
 
 <body>
-	<!-- Header -->
 	<%- include('partials/headerNavbar') %>
-	<!-- /Header -->
 
-	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
@@ -32,17 +29,20 @@
 							<%= product.name %>
 						</h2>
 
+						<% if(product.discount > 0) { %>
 						<p class="product-detail-price small">
 							<span><%= product.price %></span>
 							/
-							<b><%= product.discount %>% OFF</b>
+							<strong><%= product.discount %>% OFF</strong>
 						</p>
 						<p class="product-detail-price">
-							$FINAL PRICE
+							<%= product.finalPriceFormated %>
 						</p>
+						<% } else { %>
 						<p class="product-detail-price">
 							<%= product.price %>
 						</p>
+						<% } %>
 
 						<ul class="actions-list">
 							<li>
@@ -59,7 +59,8 @@
 						<hr>
 
 						<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
+						<form action="/products/<%= product.id %>?_method=delete" method="POST"
+							style="display: inline-flex">
 							<button type="submit" class="action-button delete">APAGAR</button>
 						</form>
 					</article>
@@ -67,12 +68,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- /product detail -->
 
-	<!-- footer -->
 	<%- include('partials/footer') %>
-	<!-- /footer -->
-
 </body>
 
 </html>
