@@ -91,11 +91,20 @@
     },
     {
         "id": 17,
+        "name": "Gabriel Fernandes",
+        "price": "10",
+        "discount": "0",
+        "category": "visited",
+        "description": "Testeeeeeeeee",
+        "image": "5a09e35b-f685-4159-969e-c04afd94b0db-ApresentacÌ§aÌo.jpg"
+    },
+    {
+        "id": "b4f8c720-2a2a-4ea8-b4f6-01efc707ccb6",
         "name": "Bug",
         "price": "150.00",
         "discount": "20",
-        "category": "in-sale",
+        "category": "visited",
         "description": "teste",
-        "image": ""
+        "image": "d1c93e12-4585-45eb-911a-69165bef94de-image.png"
     }
 ]
