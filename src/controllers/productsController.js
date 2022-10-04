@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { v4: uuid } = require('uuid');
 const { formatCurrencyBr } = require('../helpers/formatCurrencyBr');
 
 const productsFilePath = path.join(__dirname, '..', 'data', 'productsDataBase.json');
@@ -15,7 +16,7 @@ const controller = {
 		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 		const productFound = products
-			.find((product) => product.id === +id);
+			.find((product) => String(product.id) === id);
 
 		const finalDiscount = (productFound.price * productFound.discount) / 100;
 		const finalPrice = productFound.price - finalDiscount;
@@ -39,8 +40,9 @@ const controller = {
 		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 		const newProduct = {
-			id: products.at(-1).id + 1,
-			...request.body
+			id: uuid(),
+			...request.body,
+			image: request.file.filename
 		}
 
 		products.push(newProduct);
